@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <style>
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages > li { padding: 0.5rem 1rem; }
+      #messages > li:nth-child(odd) { background: #efefef; }
+    </style>    
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      messageList = document.querySelector("ul");
+      const socket = io();
+      function addMessageToHTML(message) {
+        const li = document.createElement("li");
+        li.innerText = message;
+        messageList.append(li);
+        window.scrollTo(0,document.body.scrollHeight);
+      }
+      socket.on("log", addMessageToHTML);    
+     
+    </script>
+  </body>
+</html>
