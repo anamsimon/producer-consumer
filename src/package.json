@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "producer" : "node producer/index",
-    "consumer" : "node consumer/index"
+    "test": "node ./node_modules/mocha/bin/_mocha --recursive ./test/**/*.js",
+    "producer": "node producer/index",
+    "consumer": "node consumer/index"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +15,9 @@
     "express": "^4.17.1",
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2"
   }
 }
