@@ -15,12 +15,17 @@ Usage
 # Install the npm module
 ```bash
 $ npm install
+```
 # run consumer, producer service and web front together 
+```bash
 $ npm start
+```
 # to load run web front on browser
+```bash
 http://localhost:3000
-
+```
 # all configurations are stored in file
+```bash
 .env
 ```
 Tests
