@@ -4,7 +4,9 @@ class expression {
         return expression;
     }
     evaluate(expression) {
-        return eval(expression.replace('=', ''));
+        if (expression.endsWith('=') == true)
+            expression = expression.substring(0, expression.length - 1)
+        return eval(expression);
     }
     validate(expression) {
         const regEx = /^\d+[+]\d+=$/;

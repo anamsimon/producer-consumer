@@ -8,13 +8,23 @@ class producer {
 
     start() {
         let self = this;
-        setInterval(() => {
-            let expression = Expression.generate();
-            console.log(`${self.id} sends ${expression}`);
-            self.sender.send(expression, `${self.id} sends ${expression}`, (result) => {
-                console.log(`${self.id} rcvs ${result}`);
-            });
-        }, 300)
+        setInterval((() => {
+            self.getExpressionAndSend(Expression, self.sender);
+        }), 300)
+    }
+
+    getExpressionAndSend(expression, sender) {
+        let self = this;
+        let mathExprssn = expression.generate();
+        console.log(`${self.id} sends ${mathExprssn}`);
+        sender.send(mathExprssn, `${self.id} sends ${mathExprssn}`, (result) => {
+            self.resultCallBack(result);
+        });
+    }
+
+    resultCallBack(result) {
+        let self = this;
+        console.log(`${self.id} rcvs ${result}`);
     }
 }
 
