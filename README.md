@@ -20,7 +20,7 @@ $ npm install
 ```bash
 $ npm start
 ```
-# to load run web front on browser
+# run web front on browser
 ```bash
 http://localhost:3000
 ```
@@ -32,6 +32,5 @@ Tests
 -----
 Unit tests use Mocha
 ```bash
-# Run tests
 $ npm test
 ```
