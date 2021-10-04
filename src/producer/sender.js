@@ -1,12 +1,14 @@
 const io = require('socket.io-client');
+require('dotenv').config();
 
 class sender {
     constructor() {
-        this.socket = io('http://localhost:3000');
+        this.socket = io(process.env.CONSUMER_HOST + ':' +
+            process.env.CONSUMER_PORT);
 
     }
-    send(expression, log, callback) {
-        this.socket.emit('CH01', expression, log, callback);
+    send(expression, callback) {
+        this.socket.emit(process.env.CONSUMER_CHANNEL, expression, callback);
     }
 }
 

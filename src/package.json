@@ -5,14 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/_mocha --recursive ./test/**/*.js",
-    "producer": "node producer/index",
-    "consumer": "node consumer/index"
+    "produce": "node ./producer/index.js",
+    "consume": "node ./consumer/index.js",
+    "web": "node ./web/index.js",
+    "start": "npm-run-all --parallel web produce consume "    
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "events": "^3.3.0",
     "express": "^4.17.1",
+    "nconf": "^0.11.3",
+    "npm-run-all": "^4.1.5",
     "sinon": "^11.1.2",
     "socket.io": "^4.2.0",
     "socket.io-client": "^4.2.0"

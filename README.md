@@ -8,7 +8,7 @@ The producer and the consumer communicate via the Socket.io
 
 Requirements
 ------------
-Node.js 
+Node.js, Socket.io 
 
 Usage
 -----
@@ -16,10 +16,8 @@ Usage
 # Install the npm module
 ```bash
 $ npm install
-# run consumer
-$ node consumer
-# run producer
-$ node consumer
+# run consumer and producer service together 
+$ npm start
 # run web front
 http://localhost:3000
 ```
@@ -28,5 +26,5 @@ Tests
 Unit tests use Mocha
 ```bash
 # Run tests
-$ npm run test
+$ npm test
 ```

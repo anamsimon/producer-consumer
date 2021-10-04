@@ -1,4 +1,7 @@
-const Expression = require('../helper/expression')
+const Expression = require('../helper/expression');
+const Logger = require('../helper/logger');
+require('dotenv').config();
+
 class producer {
 
     constructor(id, sender) {
@@ -10,21 +13,28 @@ class producer {
         let self = this;
         setInterval((() => {
             self.getExpressionAndSend(Expression, self.sender);
-        }), 300)
+        }), process.env.PRODUCER_INTERVAL)
     }
 
     getExpressionAndSend(expression, sender) {
         let self = this;
         let mathExprssn = expression.generate();
-        console.log(`${self.id} sends ${mathExprssn}`);
-        sender.send(mathExprssn, `${self.id} sends ${mathExprssn}`, (result) => {
+        this.sendLog(mathExprssn);
+        sender.send(mathExprssn, (result) => {
             self.resultCallBack(result);
         });
     }
 
     resultCallBack(result) {
-        let self = this;
-        console.log(`${self.id} rcvs ${result}`);
+        this.rcvLog(result);
+    }
+
+    sendLog(log) {
+        Logger.log(`${this.id} sends ${log}`);
+    }
+
+    rcvLog(log) {
+        Logger.log(`${this.id} rcvs ${log}`);
     }
 }
 

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const http = require('http');
@@ -11,25 +12,21 @@ class receiver {
     constructor() {
         let self = this;
         io.on('connection', function (socket) {
-            console.log('connection');
-            socket.on('CH01', function (message, log, callback) {
-                io.emit('log', log);
-                self.consumer(message, (message, log) => {
-                    io.emit('log', log);
+            console.log('producer consumer connected');
+            socket.on(process.env.CONSUMER_CHANNEL, function (message, callback) {
+                self.consumerFunc(message, (message) => {
                     callback(message);
                 });
             });
 
         });
-        app.get('/', (req, res) => {
-            res.sendFile(__dirname + '/index.html');
-        });
-        server.listen(3000, () => {
-            console.log('listening on *:3000');
+        server.listen(process.env.CONSUMER_PORT, () => {
+            console.log('consumer listening on *:', process.env.CONSUMER_PORT);
         });
     }
-    receive(consumerfn) {
-        this.consumer = consumerfn;
+
+    register(consumerFunc) {
+        this.consumerFunc = consumerFunc;
     }
 }
 
